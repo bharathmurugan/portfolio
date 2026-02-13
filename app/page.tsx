@@ -1,23 +1,37 @@
-import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { Skills } from "@/components/skills";
-import { Experience } from "@/components/experience";
-import { Projects } from "@/components/projects";
-import { Education } from "@/components/education";
-import { Contact } from "@/components/contact";
-import { Navigation } from "@/components/navigation";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+
+import PortfolioLoader from "../components/PortfolioLoader";
+
+import { Navigation } from "../components/Navigation";
+import { About } from "../components/about";
+import { Skills } from "../components/Skills";
+import { Experience } from "../components/Experience";
+import { Projects } from "../components/Projects";
+import { Education } from "../components/Education";
+import { Contact } from "../components/contact";
+import { Hero } from "../components/Hero";
+export default function Page() {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <main className="min-h-screen">
-      <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Contact />
-    </main>
+    <>
+      {loading && (
+        <PortfolioLoader onComplete={() => setLoading(false)} />
+      )}
+
+      <div className={loading ? "hidden" : ""}>
+        <Navigation />
+         <Hero />
+        <About />
+         
+        <Skills />
+        <Experience />
+        <Projects />
+        <Education />
+        <Contact />
+      </div>
+    </>
   );
 }
